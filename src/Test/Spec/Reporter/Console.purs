@@ -10,7 +10,6 @@ import Data.Show.Generic (genericShow)
 import Data.Map (Map)
 import Data.Map as Map
 import Data.Maybe (Maybe(..), isNothing)
-import Effect.Exception as Error
 import Test.Spec.Console (tellLn)
 import Test.Spec.Reporter.Base (RunningItem(..), defaultReporter, defaultUpdate)
 import Test.Spec.Result (Result(..))
@@ -102,6 +101,6 @@ print path a = do
     PrintTest name (Failure err) -> do
       tellLn $ "  " <> styled Style.red ("✗ " <> name <> ":")
       tellLn $ ""
-      tellLn $ "  " <> styled Style.red (Error.message err)
+      tellLn $ "  " <> styled Style.red (show err)
     PrintPending name -> do
       tellLn $ "  " <> styled Style.cyan ("~ " <> name)
